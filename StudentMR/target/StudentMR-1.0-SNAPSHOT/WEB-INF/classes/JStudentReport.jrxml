@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.14.0.final using JasperReports Library version 6.14.0-2ab0d8625be255bf609c78e1181801213e51db8f  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="JStudentReport" pageWidth="4096" pageHeight="3072" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1bcfaca9-7046-49e0-8d87-e741b589344b">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="name" class="java.lang.String"/>
+	<field name="percentage" class="java.lang.Float"/>
+	<field name="university" class="java.lang.String"/>
+	<sortField name="university" order="Descending"/>
+	<group name="university">
+		<groupExpression><![CDATA[$F{university}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<summary>
+		<band height="2928">
+			<barChart>
+				<chart isShowLegend="false" evaluationTime="Group" evaluationGroup="university" renderType="draw">
+					<reportElement x="50" y="500" width="3840" height="2331" uuid="336b725a-8682-48e4-ac77-2b0b58e544b4"/>
+					<chartTitle/>
+					<chartSubtitle color="#171313">
+						<font fontName="Consolas" size="20"/>
+					</chartSubtitle>
+					<chartLegend position="Bottom">
+						<font size="25"/>
+					</chartLegend>
+				</chart>
+				<categoryDataset>
+					<dataset resetType="Report"/>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{name}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{university}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{percentage}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+			<staticText>
+				<reportElement x="1640" y="60" width="372" height="159" uuid="c033c173-b55b-4649-96a1-40787ed17315"/>
+				<textElement>
+					<font size="99"/>
+				</textElement>
+				<text><![CDATA[Report:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="2040" y="100" width="411" height="161" uuid="f297d58a-b810-46c1-a95d-b19e5492dddb"/>
+				<textElement>
+					<font size="65"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{university}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
