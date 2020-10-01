@@ -23,25 +23,30 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+
         <%
-        String uname = request.getParameter("uname");
-         List<StudentRc> li = (new Retriever()).getStudentList(uname);
-         
-         
-         JRBeanCollectionDataSource beanColDataSource = new JRBeanCollectionDataSource(li);
-        Map<String, Object> parameters = new HashMap<String, Object>();
-        String jpath = "D:\\LAB\\SEMVII\\BDA\\Lab10\\StudentMR\\src\\main\\resources\\JStudentReport.jasper";
-        //JasperPrint jasperPrint = JasperFillManager.fillReport(jpath, parameters, beanColDataSource);
-        JasperPrintManager jprm;
-        
-        byte bytes[] = JasperRunManager.runReportToPdf(jpath, parameters,beanColDataSource);
-        response.setContentType("application/pdf");
-            response.setContentLength(bytes.length);
-            ServletOutputStream outStream = response.getOutputStream();
-            outStream.write(bytes, 0, bytes.length);
-            outStream.flush();
-            outStream.close();
+            try {
+                String bckg = request.getParameter("bckg");
+                List<StudentRc> li = (new Retriever()).getStudentList(bckg);
+
+                JRBeanCollectionDataSource beanColDataSource = new JRBeanCollectionDataSource(li);
+                Map<String, Object> parameters = new HashMap<String, Object>();
+                String jpath = "D:\\LAB\\SEMVII\\BDA\\Lab10\\JasperReport\\StudentMR\\src\\main\\resources\\JStudentReport.jasper";
+                //JasperPrint jasperPrint = JasperFillManager.fillReport(jpath, parameters, beanColDataSource);
+                //JasperPrintManager jprm;
+                out.clear();
+                byte bytes[] = JasperRunManager.runReportToPdf(jpath, parameters, beanColDataSource);
+                response.setContentType("application/pdf");
+                response.setContentLength(bytes.length);
+                ServletOutputStream outStream = response.getOutputStream();
+                outStream.write(bytes, 0, bytes.length);
+                outStream.flush();
+                outStream.close();
+                out.write(outStream.toString());
+            } catch (Exception e) {
+                System.out.println(e);
+                e.printStackTrace();
+            }
         %>
     </body>
 </html>

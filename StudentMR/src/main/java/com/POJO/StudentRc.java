@@ -10,29 +10,30 @@ package com.POJO;
  * @author moxan
  */
 public class StudentRc {
-    public String name;
-    public float percentage;
-    public String university;
 
-    public StudentRc(String name, float percentage, String university) {
-        this.name = name;
+    public Double percentage;
+    public String university;
+    public String background;
+
+    public StudentRc(Double percentage, String university, String background) {
         this.percentage = percentage;
         this.university = university;
+        this.background = background;
     }
 
-    public String getName() {
-        return name;
+    public String getBackground() {
+        return background;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setBackground(String background) {
+        this.background = background;
     }
 
-    public float getPercentage() {
+    public Double getPercentage() {
         return percentage;
     }
 
-    public void setPercentage(float percentage) {
+    public void setPercentage(Double percentage) {
         this.percentage = percentage;
     }
 
@@ -46,12 +47,10 @@ public class StudentRc {
 
     @Override
     public String toString() {
-        return "StudentRc{" + "name=" + name + ", percentage=" + percentage + ", university=" + university + '}';
+        return "StudentRc{ percentage=" + percentage + ", university=" + university + '}';
     }
 
     public StudentRc() {
     }
 
-   
-    
 }

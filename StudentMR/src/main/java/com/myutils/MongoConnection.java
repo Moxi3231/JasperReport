@@ -6,6 +6,7 @@
 package com.myutils;
 
 import com.mongodb.MongoClient;
+import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
@@ -15,10 +16,11 @@ import org.bson.Document;
  * @author moxan
  */
 public class MongoConnection {
+
     MongoClient mongoc;
-    public  MongoCursor<Document> getMongoCursor()
-    {
-        mongoc = new MongoClient( "localhost" , 27017 );
-        return mongoc.getDatabase("BDA").getCollection("student_master").find().iterator();
+
+    public MongoCollection<Document> getMongoCollection() {
+        mongoc = new MongoClient("localhost", 27017);
+        return mongoc.getDatabase("BDA").getCollection("student_master");
     }
 }
