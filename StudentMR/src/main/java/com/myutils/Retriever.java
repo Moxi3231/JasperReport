@@ -26,6 +26,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 import javafx.animation.KeyValue;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 
 /**
  *
@@ -38,11 +39,11 @@ public class Retriever {
     public List<StudentRc> getStudentList(String bck) {
         mcon = new MongoConnection();
         MongoCollection<Document> mcol = mcon.getMongoCollection();
-        DBObject query = BasicDBObject.parse("{$group:{_id:\"$University Name\",avgp:{$avg:\"$DegreePercentage\"}}}");
+        List<StudentRc> lsr = new ArrayList<StudentRc>();
+        
         MongoCursor<Document> mcr = mcol.find().iterator();
 
         Set<String> unlist = getUniversityList();
-        List<StudentRc> lsr = new ArrayList<StudentRc>();
         HashMap<String, List<Double>> avpercentage = new HashMap<String, List<Double>>();
         HashMap<String, String> backuni = new HashMap<String, String>();
         while (mcr.hasNext()) {
